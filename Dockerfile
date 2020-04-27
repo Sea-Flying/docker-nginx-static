@@ -2,7 +2,7 @@ FROM alpine:3.11
 
 LABEL maintainer="Felix Wehnert <felix@wehnert.me>"
 
-ENV NGINX_VERSION 1.17.7
+ENV NGINX_VERSION 1.17.9
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& CONFIG="\
@@ -25,6 +25,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		--with-http_gzip_static_module \
 		--with-threads \
 		--with-file-aio \
+		--with-http_stub_status_module \
 	" \
 	&& addgroup -S nginx \
 	&& adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
